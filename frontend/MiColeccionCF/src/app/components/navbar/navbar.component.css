@@ -1,0 +1,35 @@
+/* Estilo para el navbar */
+.navbar {
+	background-color: #343a3f;
+	color: #ffffff;
+	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.navbar a {
+	color: #ffffff;
+	text-decoration: none;
+	margin: 0 1rem;
+	font-weight: bold;
+}
+
+.navbar a:hover {
+	color: #ffc107;
+}
+
+.navbar-brand {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.navbar-menu {
+	display: flex;
+	gap: 1rem;
+}
+
+.navbar-toggle {
+	display: none;
+}

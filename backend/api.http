@@ -1,0 +1,62 @@
+### Bienvenida
+GET http://localhost:3000/
+
+### Registrar un nuevo usuario
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+	"correo": "juan2@gmail.com",
+	"nombreUsuario": "juan2",
+	"password": "1234",
+	"ubicacion": "Sevilla"
+}
+
+
+### Iniciar sesión con un usuario existente
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+	"nombreUsuario": "prueba",
+	"password": "123456789"
+}
+
+### Deslogear un usuario
+GET http://localhost:3000/logout
+
+### Obtener el usuario que ha iniciado sesión
+GET http://localhost:3000/usuario
+
+### Obtener todos los usuarios cercanos
+GET http://localhost:3000/usuario/usuariosCercanos
+Content-Type: application/json
+
+{
+	"ubicacion": "Malaga"
+}
+
+### Obtener usuarios por id
+GET http://localhost:3000/usuario/8
+
+### Obtener cromos por coleccion
+GET http://localhost:3000/cromos
+
+### Guardar los cromos de un usuario
+POST http://localhost:3000/cromos/insertarCromo
+Content-Type: application/json
+
+{
+	"idUsuario": 8,
+	"idCromo": 5,
+	"idColeccion": 1
+}
+
+### Borrar cromos de un usuario
+DELETE http://localhost:3000/cromos/borrarCromo
+Content-Type: application/json
+
+{
+	"idUsuario": 8,
+	"idCromo": 5
+}

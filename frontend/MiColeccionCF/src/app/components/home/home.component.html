@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+	<div class="row mb-4">
+		<div class="col-md-12 text-center" *ngIf="usuario">
+			<h1>¡Bienvenido {{ usuario.nombre_usuario }}!</h1>
+			<p>Esta es tu página de inicio, donde podrás poner al día tus colecciones.</p>
+		</div>
+	</div>
+</div>
+
+<div class="container p-3 mb-4 coleccion">
+	<div class="row justify-content-center">
+		<div class="col-md-10">
+			@if (coleccion1) {
+				<app-checklist
+					[coleccion]="coleccion1"
+					[usuario]="usuario"
+				></app-checklist>
+			}
+			<button class="btn btn-primary mt-3" (click)="guardarCromos(coleccion1, 1)">Guardar</button>
+		</div>
+	</div>
+</div>
+
+<div class="container p-3 mb-4 coleccion">
+	<div class="row justify-content-center">
+		<div class="col-md-10">
+			@if (coleccion1) {
+				<app-checklist
+					[coleccion]="coleccion2"
+					[usuario]="usuario"
+				></app-checklist>
+			}
+			<button class="btn btn-primary mt-3" (click)="guardarCromos(coleccion2, 2)">Guardar</button>
+		</div>
+	</div>
+</div>

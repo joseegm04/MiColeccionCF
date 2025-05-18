@@ -1,0 +1,57 @@
+<div class="container mt-5">
+	<h2>¡Bienvenido/a a MiColeccionCF!</h2>
+	<h5>Regístrate para comenzar tus colecciones de fútbol favoritas</h5>
+	<form (ngSubmit)="onRegister()" #registerForm="ngForm">
+		<div class="mb-3">
+			<label for="nombre_usuario">Nombre de usuario</label>
+			<input
+				type="text"
+				id="nombre_usuario"
+				name="nombre_usuario"
+				class="form-control"
+				[(ngModel)]="registerData.nombreUsuario"
+				required
+			/>
+		</div>
+		<div class="mb-3">
+			<label for="email">Email</label>
+			<input
+				type="email"
+				id="email"
+				name="email"
+				class="form-control"
+				[(ngModel)]="registerData.correo"
+				required
+			/>
+		</div>
+		<div class="mb-3">
+			<label for="ubicacion">Ubicación</label>
+			<select 
+			name="ubicacion" 
+			id="ubicacion"
+			class="form-control"
+			[(ngModel)]="registerData.ubicacion"
+			required>
+				<option value="" disabled selected>Selecciona tu ubicación</option>
+				@for(provincia of provincias; track provincia.nombre){
+					<option [value]="provincia.nombre">{{ provincia.nombre }}</option>
+				}
+			</select>
+		</div>
+		<div class="mb-3">
+			<label for="password">Contraseña</label>
+			<input
+				type="password"
+				id="password"
+				name="password"
+				class="form-control"
+				[(ngModel)]="registerData.password"
+				required
+			/>
+		</div>
+		<button class="btn btn-primary" type="submit">Registrarse</button>
+	</form>
+	<div>
+		<p class="mt-3">¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión aquí</a></p>
+	</div>
+</div>

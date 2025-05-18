@@ -1,0 +1,25 @@
+@if (coleccion && coleccion.equipos) {
+	<h2 class="text-center mb-4" id="1">{{ coleccion.nombre }}</h2>
+	<div class="row justify-content-center checklist">
+		@for (equipo of coleccion.equipos; track $index) {
+			<div class="col-md-6 mb-4">
+				<h4 class="text-center">{{ equipo.nombre }}</h4>
+				<div class="row">
+					@for (cromo of equipo.cromos; track $index) {
+						<div class="col-6">
+							<li class="form-check" id="{{ cromo.id }}">
+								<input 
+									type="checkbox" 
+									class="form-check-input" 
+									[(ngModel)]="cromo.marcado"
+									name="{{ cromo.nombre }}" 
+								/>
+								<label class="form-check-label" for="{{ cromo.nombre }}">{{ cromo.numero }} - {{ cromo.nombre}}</label>
+							</li>
+						</div>
+					}
+				</div>
+			</div>
+		}
+	</div>
+}
