@@ -23,7 +23,7 @@ app.use(cors({
 	credentials: true,
 }));
 
-const server = http.createServer(app);
+export const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
 		origin: "http://localhost:4200",
@@ -116,7 +116,5 @@ io.on("connection", (socket) => {
 		}
 	})
 });
-
-server.listen(process.env.PORT)
 
 export default app;

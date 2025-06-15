@@ -1,3 +1,4 @@
+//Componente de la lista de usuarios recomendados
 import { Component } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario';
 import { UsuarioService } from '../../services/usuario.service';

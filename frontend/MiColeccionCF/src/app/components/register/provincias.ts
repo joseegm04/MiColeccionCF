@@ -1,3 +1,4 @@
+//Lista de provincias para el campo de ubicación
 export const provincias = [
 	{ "nombre": "Álava" },
 	{ "nombre": "Albacete" },

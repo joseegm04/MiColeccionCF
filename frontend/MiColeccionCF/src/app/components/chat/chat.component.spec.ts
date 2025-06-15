@@ -1,3 +1,4 @@
+//Archivo de tests del componente chat
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatComponent } from './chat.component';
 import { ActivatedRoute } from '@angular/router';

@@ -1,3 +1,4 @@
+//Archivo de tests del guard de autenticacion
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 

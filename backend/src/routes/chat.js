@@ -1,3 +1,4 @@
+//Archivo de rutas para los mensajes del chat
 import { Router } from "express";
 import { Chat } from "../models/chat.js";
 

@@ -1,3 +1,4 @@
+//Interfaz para los mensajes
 export interface Mensaje {
 	id?: number;
 	contenido: string;

@@ -1,3 +1,4 @@
+//Componente del chat.
 import { Component, ViewChild } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { ActivatedRoute } from '@angular/router';

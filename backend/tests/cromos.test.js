@@ -1,3 +1,4 @@
+//Archivo de tests para los cromos
 import request from "supertest";
 import { jest } from "@jest/globals";
 import app from "../src/index.js";

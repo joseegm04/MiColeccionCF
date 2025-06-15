@@ -1,3 +1,4 @@
+//Componente del perfil del usuario que se visite
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Coleccion, Usuario } from '../../interfaces/usuario';

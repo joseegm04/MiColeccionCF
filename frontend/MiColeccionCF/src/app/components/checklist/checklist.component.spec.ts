@@ -1,3 +1,4 @@
+//Archivo de tests del componente checklist
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChecklistComponent } from './checklist.component';
 import { Coleccion } from '../../interfaces/usuario';

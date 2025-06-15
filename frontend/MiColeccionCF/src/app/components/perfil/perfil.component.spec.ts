@@ -1,3 +1,4 @@
+//Archivo de tests del componente perfil
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PerfilComponent } from './perfil.component';
 import { of, throwError } from 'rxjs';

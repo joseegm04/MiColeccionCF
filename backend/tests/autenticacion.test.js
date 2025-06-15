@@ -1,3 +1,4 @@
+//Archivo de tests para la autenticación de usuarios
 import request from "supertest";
 import { jest } from "@jest/globals";
 import app from "../src/index.js";

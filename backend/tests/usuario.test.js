@@ -1,3 +1,4 @@
+//Archivo de tests para los usuarios
 import request from 'supertest';
 import { jest } from '@jest/globals';
 import jwt from 'jsonwebtoken';

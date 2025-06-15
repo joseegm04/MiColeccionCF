@@ -1,3 +1,4 @@
+//Archivo que se comunica con el backend para el socket del chat y cargar los mensajes de conversaciones previas.
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { HttpClient } from '@angular/common/http';
