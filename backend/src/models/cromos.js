@@ -1,6 +1,6 @@
+// Archivo  en el que se hacen las conexiones a la base de datos sobre los cromos y colecciones
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
-import e from 'express';
 
 dotenv.config();
 

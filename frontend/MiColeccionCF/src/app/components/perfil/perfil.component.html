@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3 p-0 text-center">
+			<app-users-list></app-users-list>
+		</div>
+		@if(usuario) {
+			<div class="col-md-8">
+				<div class="container mt-4">
+					<div class="row mb-4">
+						<div class="col-md-12 text-center">
+							<h1>Colección de {{ usuario.nombre_usuario }}</h1>
+							<p>Ubicación: {{ usuario.ubicacion }}</p>
+							<a class="btn btn-primary" routerLink="/chat/{{ usuario.nombre_usuario }}">Abrir Chat</a>
+							<p><b>Importante:</b> Estás viendo la colección de un usuario, esta no se puede editar.</p>
+						</div>
+					</div>
+				</div>
+				<div class="colecciones">
+						<div class="container p-3 mb-4 coleccion">
+						<div class="row justify-content-center">
+							<div class="col-md-10">
+								@if (coleccion1) {
+									<app-checklist [coleccion]="coleccion1" [editable]="false"></app-checklist>
+								}
+							</div>
+						</div>
+					</div>
+
+					<div class="container p-3 mb-4 coleccion">
+						<div class="row justify-content-center">
+							<div class="col-md-10">
+								@if (coleccion1) {
+									<app-checklist [coleccion]="coleccion2" [editable]="false"></app-checklist>
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		} @else {
+			<div class="col-md-8">
+				<div class="container mt-4">
+					<div class="row mb-4">
+						<div class="col-md-12 text-center">
+							<h2>Perfil no encontrado</h2>
+							<p>El usuario no existe o no está disponible.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>

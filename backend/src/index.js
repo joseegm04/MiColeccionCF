@@ -1,23 +1,35 @@
+// Archivo principal del servidor, donde se crea el mismo y se configuran las rutas y middlewares
 import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import http from "http";
+import { Server } from "socket.io";
 import { Usuario } from "./models/usuario.js";
 import { usuarioRouter } from "./routes/usuario.js";
 import { cromosRouter } from "./routes/cromos.js";
+import { chatRouter } from "./routes/chat.js";
+import { Chat } from "./models/chat.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-
 const app = express();
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-	 origin: "http://localhost:4200" ,
-	 credentials: true,
+	origin: "http://localhost:4200",
+	credentials: true,
 }));
+
+const server = http.createServer(app);
+const io = new Server(server, {
+	cors: {
+		origin: "http://localhost:4200",
+		credentials: true,
+	}
+});
 
 app.use((req, res, next) => {
 	const token = req.cookies.access_token;
@@ -47,7 +59,7 @@ app.post("/register", async (req, res) => {
 	}
 });
 
-app.post("/login", async (req, res) => { //Para iniciar sesion solo requiero del nombre de usuario y la contraseña
+app.post("/login", async (req, res) => {
 	const { nombreUsuario, password } = req.body;
 	if(!nombreUsuario || !password) {
 		return res.status(400).json({ error: "Faltan datos" });
@@ -55,14 +67,14 @@ app.post("/login", async (req, res) => { //Para iniciar sesion solo requiero del
 	try {
 		const usuario = await Usuario.login({ nombreUsuario, password });
 		const token = jwt.sign(
-			{ id: usuario.id, nombreUsuario: usuario.nombreUsuario},
+			{ id: usuario.id, nombreUsuario: usuario.nombre_usuario},
 			process.env.JWT_SECRET,
 			{ expiresIn: "1h" }
 		)
 
 		res.cookie('access_token', token, {
 			httpOnly: true,
-			maxAge: 3600000, // 1 hour
+			maxAge: 3600000,
 			sameSite: "lax",
 			secure: false
 		}).send(usuario);
@@ -86,6 +98,25 @@ app.use("/usuario", usuarioRouter);
 
 app.use("/cromos", cromosRouter);
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.use("/chat", chatRouter);
+
+io.on("connection", (socket) => {
+	socket.on("abrirChat", ({ id_emisor, id_receptor }) => {
+		const nombreChat = [id_emisor, id_receptor].sort().join("-");
+		socket.join(nombreChat);
+	});
+
+	socket.on("enviarMensaje", async (mensaje) => {
+		const nombreChat = [mensaje.id_emisor, mensaje.id_receptor].sort().join("-");
+		io.to(nombreChat).emit("recibirMensaje", mensaje);
+		try {
+			await Chat.guardarMensaje(mensaje.id_emisor, mensaje.id_receptor, mensaje.contenido);
+		} catch (error) {
+			console.error("error:", error);
+		}
+	})
 });
+
+server.listen(process.env.PORT)
+
+export default app;

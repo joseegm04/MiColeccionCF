@@ -1,3 +1,4 @@
+// Interfaces para el usuario, cromos y colecciones
 export interface Usuario {
 	id: number;
 	correo: string;
@@ -24,6 +25,5 @@ export interface Cromo {
 	id: number;
 	numero: string;
 	nombre: string;
-	repetido: number;
 	marcado: boolean;
 }

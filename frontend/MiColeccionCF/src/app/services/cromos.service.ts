@@ -1,3 +1,4 @@
+//Archivo que se comunica con el backend para gestionar los cromos y las colecciones
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

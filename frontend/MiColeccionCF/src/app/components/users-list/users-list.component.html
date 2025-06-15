@@ -1,0 +1,29 @@
+<div class="recomendados text-center pe-3 ps-3 pb-3 d-none d-md-block">
+	<h5 class="mb-3 text-center">Usuarios cercanos a ti</h5>
+	@if (usuarios.length === 0) {
+		<p class="no-recomendados">No hay usuarios recomendados en este momento.</p>
+	} @else {
+		<ul class="list-group w-100">
+			@for (usuario of usuarios; track usuario.id) {
+				<a href="/users/{{ usuario.nombre_usuario }}"><li class="list-group-item">{{ usuario.nombre_usuario }}</li></a>
+			}
+		</ul>
+	}
+</div>
+<div class="d-block d-md-none">
+	<button class="btn btn-outline-primary w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#usuarios-recomendados">Ver usuarios recomendados</button>
+	<div class="collapse" id="usuarios-recomendados">
+		<div class="recomendados text-center pe-3 ps-3 pb-3 h-25 mx-auto">
+			<h5 class="mb-3 text-center">Usuarios cercanos a ti</h5>
+			@if (usuarios.length === 0) {
+				<p class="no-recomendados">No hay usuarios recomendados en este momento.</p>
+			} @else {
+				<ul class="list-group w-100">
+					@for (usuario of usuarios; track usuario.id) {
+						<li class="list-group-item"><a href="/users/{{ usuario.nombre_usuario }}">{{ usuario.nombre_usuario }}</a></li>
+					}
+				</ul>
+			}
+		</div>
+	</div>
+</div>

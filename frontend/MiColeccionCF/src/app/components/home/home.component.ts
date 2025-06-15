@@ -1,3 +1,4 @@
+// Componente de la página de inicio.
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
@@ -10,7 +11,7 @@ import { CromosService } from '../../services/cromos.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit{
-  constructor(private usuarioService: UsuarioService, private cromosService: CromosService, private router: Router) {}
+  constructor(public usuarioService: UsuarioService, public cromosService: CromosService, public router: Router) {}
 
   public usuario!: Usuario;
   public coleccion1!: Coleccion;
@@ -39,6 +40,11 @@ export class HomeComponent implements OnInit{
         this.cromosCargados[1] = [];
         this.cromosCargados[2] = [];
 
+        res.colecciones.forEach((coleccion) => {
+          const coleccionUsuario = this.usuario.colecciones?.[coleccion.nombre];
+          this.marcarCromo(coleccion, coleccionUsuario);
+        });
+
         this.coleccion1.equipos.forEach((equipo) => {
           equipo.cromos.forEach((cromo) => {
             if (cromo.marcado) this.cromosCargados[1].push(cromo.id);
@@ -55,6 +61,20 @@ export class HomeComponent implements OnInit{
         console.error(err);
       }
     });
+  }
+
+  marcarCromo(coleccion: Coleccion, coleccionUsuario: Coleccion | undefined): void {
+    
+    if (coleccionUsuario) {
+      coleccion.equipos.forEach((equipo) => {
+        const equipoUsuario = coleccionUsuario.equipos.find(eq => eq.nombre === equipo.nombre);
+        if (equipoUsuario) {
+          equipo.cromos.forEach((cromo) => {
+            cromo.marcado = !!equipoUsuario.cromos.find(cr => cr.id === cromo.id);
+          });
+        }
+      });
+    }
   }
 
   guardarCromos(coleccion: Coleccion, idColeccion: number): void {
@@ -100,5 +120,7 @@ export class HomeComponent implements OnInit{
         });
       }
     });
+
+    this.cromosCargados[idColeccion] = [...this.cromosGuardados];
   }
 }

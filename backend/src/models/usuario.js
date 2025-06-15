@@ -1,3 +1,4 @@
+// Archivo  en el que se hacen las conexiones a la base de datos sobre los usuarios
 import mysql from 'mysql2/promise';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
@@ -56,19 +57,23 @@ export class Usuario {
 		return usuarioLogin;
 	}
 
-	static async getUsuario(id){
+	static async getUsuario(nombre){
 		const [rows] = await connection.execute(`
-			select usuarios.id, usuarios.correo, usuarios.nombre_usuario, usuarios.ubicacion, cromos.id as idCromo, cromos.numero as numCromo, cromos.nombre as nombreCromo, equipos.nombre as nombreEquipo, usuario_cromos.repetido, c.nombre as nombreColeccion from usuarios 
+			select usuarios.id, usuarios.correo, usuarios.nombre_usuario, usuarios.ubicacion, cromos.id as idCromo, cromos.numero as numCromo, cromos.nombre as nombreCromo, equipos.nombre as nombreEquipo, c.nombre as nombreColeccion from usuarios 
 					join usuario_colecciones on usuarios.id = usuario_colecciones.id_usuario 
 					join colecciones c on c.id = usuario_colecciones.id_coleccion
 					join equipos on equipos.id_coleccion = c.id
 					join cromos on cromos.id_equipo = equipos.id
 					join usuario_cromos on cromos.id = usuario_cromos.id_cromo and usuarios.id = usuario_cromos.id_usuario
-					where usuarios.id = ?;
-		`, [id]);
+					where usuarios.nombre_usuario = ?;
+		`, [nombre]);
 
 		if (rows.length === 0 ) {
-			const [rows] = await connection.execute("SELECT id, correo, nombre_usuario, ubicacion FROM usuarios WHERE id = ?", [id]);
+			const [rows] = await connection.execute(
+				`SELECT id, correo, nombre_usuario, ubicacion 
+				FROM usuarios WHERE nombre_usuario = ?`, 
+				[nombre]
+			);
 			return rows[0];
 		}
 		
@@ -108,8 +113,10 @@ export class Usuario {
 		};
 	}
 	
-	static async getUsuariosCercanos(ubicacion){
-		const [rows] = await connection.execute("SELECT id, nombre_usuario, ubicacion FROM usuarios WHERE ubicacion = ?", [ubicacion]);
+	static async getUsuariosCercanos(ubicacion, idUsuario){
+		const [rows] = await connection.execute("SELECT id, nombre_usuario, ubicacion FROM usuarios WHERE ubicacion = ? AND id != ?",
+			[ubicacion, idUsuario]
+		);
 		const usuarios = rows;
 
 		return usuarios;

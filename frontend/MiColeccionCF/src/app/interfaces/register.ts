@@ -1,3 +1,4 @@
+//Interfaz para el registro
 export interface RegisterResponse {
 	id: number;
 }

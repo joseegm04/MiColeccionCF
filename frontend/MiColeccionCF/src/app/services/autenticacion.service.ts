@@ -1,3 +1,4 @@
+//Archivo que se comunica con el backend para la autenticacion de usuarios
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponse } from '../interfaces/login';
@@ -23,5 +24,9 @@ export class AutenticacionService {
 
   logout() {
     return this.http.post(`${this.apiUrl}/logout`, {}, {withCredentials: true});
+  }
+
+  check() {
+    return this.http.get(`${this.apiUrl}/check`, { withCredentials: true });
   }
 }

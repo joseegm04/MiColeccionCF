@@ -3,3 +3,16 @@
 	height: 70vh;
 	scroll-behavior: smooth;
 }
+
+.form-check{
+	margin: 5px 0;
+	border: none;
+}
+
+.form-check-label {
+  opacity: 1 !important;
+}
+
+.form-check-input:disabled {
+  opacity: 1;
+}

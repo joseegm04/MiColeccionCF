@@ -1,3 +1,4 @@
+//Componente del inicio de sesión
 import { Component } from '@angular/core';
 import { AutenticacionService } from '../../services/autenticacion.service';
 import { Router } from '@angular/router';
@@ -13,6 +14,7 @@ export class LoginComponent {
     nombreUsuario: '',
     password: ''
   };
+  mensajeError: string = '';
 
   constructor(private AutenticacionService: AutenticacionService, private router: Router) { }
 
@@ -23,6 +25,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       error: (err) => {
+        this.mensajeError = err.error.error || 'Error al iniciar sesión';
         console.error('Error en el login', err);
       }
     });

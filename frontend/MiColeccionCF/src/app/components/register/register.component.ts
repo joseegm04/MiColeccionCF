@@ -1,3 +1,4 @@
+//Componente del registro de un usuario nuevo
 import { Component } from '@angular/core';
 import { AutenticacionService } from '../../services/autenticacion.service';
 import { Router } from '@angular/router';
@@ -18,6 +19,7 @@ export class RegisterComponent {
     correo: '',
     ubicacion: ''
   };
+  mensajeError: string = '';
 
   provincias= provincias;
 
@@ -28,6 +30,7 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       error: (err) => {
+        this.mensajeError = err.error.error || 'Error al registrar el usuario';
         console.error('Error en el registro', err.error);
       }
     })

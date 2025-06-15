@@ -12,6 +12,7 @@
 									type="checkbox" 
 									class="form-check-input" 
 									[(ngModel)]="cromo.marcado"
+									[disabled]="!editable"
 									name="{{ cromo.nombre }}" 
 								/>
 								<label class="form-check-label" for="{{ cromo.nombre }}">{{ cromo.numero }} - {{ cromo.nombre}}</label>

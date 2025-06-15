@@ -1,3 +1,4 @@
+//Archivo de rutas para los datos de los cromos y colecciones
 import { Router } from "express";
 import { Cromos } from "../models/cromos.js";
 

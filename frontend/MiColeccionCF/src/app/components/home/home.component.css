@@ -1,17 +1,16 @@
 .coleccion{
-	background-color: rgb(240, 232, 232);
+	background-color: #f0e8e8;
 	border-radius: 5px;
-}
-
-.form-check{
-	margin: 5px 0;
-	border: none;
 }
 
 h4{
 	margin-bottom: 15px;
 }
 
-.form-check-label{
-	margin-left: 5px;
+.guardar{
+	font-size: 1.2rem;
+}
+
+.guardar:hover{
+	background-color: #0b5ed7;
 }

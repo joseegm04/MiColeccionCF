@@ -1,3 +1,5 @@
+###Archivo para probar lso endpoints de la API
+
 ### Bienvenida
 GET http://localhost:3000/
 
@@ -18,12 +20,12 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-	"nombreUsuario": "prueba",
-	"password": "123456789"
+	"nombreUsuario": "josegm",
+	"password": "1234"
 }
 
 ### Deslogear un usuario
-GET http://localhost:3000/logout
+POST http://localhost:3000/logout
 
 ### Obtener el usuario que ha iniciado sesión
 GET http://localhost:3000/usuario
@@ -36,8 +38,8 @@ Content-Type: application/json
 	"ubicacion": "Malaga"
 }
 
-### Obtener usuarios por id
-GET http://localhost:3000/usuario/8
+### Obtener usuarios por nombre
+GET http://localhost:3000/usuario/josegm
 
 ### Obtener cromos por coleccion
 GET http://localhost:3000/cromos
@@ -60,3 +62,6 @@ Content-Type: application/json
 	"idUsuario": 8,
 	"idCromo": 5
 }
+
+### Obtener los mensajes de un chat
+GET http://localhost:3000/chat/9/6

@@ -1,3 +1,4 @@
+//Componente de la barra de navegación
 import { Component } from '@angular/core';
 import { AutenticacionService } from '../../services/autenticacion.service';
 import { Router } from '@angular/router';

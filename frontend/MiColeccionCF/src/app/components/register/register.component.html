@@ -1,6 +1,9 @@
 <div class="container mt-5">
 	<h2>¡Bienvenido/a a MiColeccionCF!</h2>
 	<h5>Regístrate para comenzar tus colecciones de fútbol favoritas</h5>
+	<div *ngIf="mensajeError" class="alert alert-danger">
+		{{ mensajeError }}
+	</div>
 	<form (ngSubmit)="onRegister()" #registerForm="ngForm">
 		<div class="mb-3">
 			<label for="nombre_usuario">Nombre de usuario</label>

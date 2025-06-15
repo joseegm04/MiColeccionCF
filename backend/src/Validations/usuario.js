@@ -1,3 +1,4 @@
+//Archivo para validar los datos que se introducen al crear un nuevo usuario o iniciar sesión
 export class Usuario {
 	static correoValido(correo) {
 		if (typeof correo !== "string") throw new Error("El correo debe ser un string");

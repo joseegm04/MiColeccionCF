@@ -1,7 +1,8 @@
+//Archivo que se comunica con el backend para obtener los datos de los usuarios
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Coleccion, Usuario } from '../interfaces/usuario';
+import { Usuario } from '../interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuariosCercanos`, {withCredentials: true});
   }
 
-  getUsuario(id: number): Observable<Usuario> {
-    return this.http.get<Usuario>(`${this.apiUrl}/${id}`, {withCredentials: true});
+  getUsuario(nombre_usuario: string): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${nombre_usuario}`, {withCredentials: true});
   }
 }

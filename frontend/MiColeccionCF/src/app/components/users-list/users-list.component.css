@@ -1,0 +1,38 @@
+.recomendados{
+	height: 100%;
+	max-width: 20vw;
+	min-width: 180px;
+	background-color: #f0e8e8;
+	padding-top: 1rem;
+	box-sizing: border-box;
+	border-radius: 5px;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+}
+
+li{
+	cursor: pointer;
+}
+
+li:hover{
+	background-color: #dad5d5;
+}
+
+a{
+	text-decoration: none;
+	color: black;
+}
+
+.no-recomendados{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70%;
+}
+
+@media (max-width: 768px) {
+	.recomendados {
+		min-width: 100%;
+		max-height: 500px;
+	}
+}

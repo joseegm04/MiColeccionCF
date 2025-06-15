@@ -1,3 +1,4 @@
+//Interfaz para el login
 export interface LoginResponse {
 	id: number;
 	correo: string;
