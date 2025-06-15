@@ -58,7 +58,14 @@ export class ChatComponent {
 
     this.socket.emit('abrirChat', { id_emisor: this.idEmisor, id_receptor: this.idReceptor });
     this.socket.on('recibirMensaje', (mensaje: Mensaje) => {
-      mensaje.fecha_envio = new Date(mensaje.fecha_envio).toLocaleString('es-ES', { timeZone: 'Europe/Madrid', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      mensaje.fecha_envio = new Date(mensaje.fecha_envio).toLocaleString('es-ES', { 
+        timeZone: 'Europe/Madrid',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit' 
+      })
       this.mensajes.push(mensaje);
       this.scrollAbajo();
     })
